@@ -1,0 +1,201 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Museum Color Palette */
+:root {
+  /* Primary Colors */
+  --museum-deep: #2C2A29;
+  --museum-marble: #F4F1EA;
+  --museum-gold: #C5A880;
+  --museum-gold-subtle: #C5A88040;
+  
+  /* Design Tokens */
+  --background: #2C2A29;
+  --foreground: #F4F1EA;
+  --card: #2C2A29;
+  --card-foreground: #F4F1EA;
+  --popover: #2C2A29;
+  --popover-foreground: #F4F1EA;
+  --primary: #F4F1EA;
+  --primary-foreground: #2C2A29;
+  --secondary: #3a3836;
+  --secondary-foreground: #F4F1EA;
+  --muted: #3a3836;
+  --muted-foreground: #a09a94;
+  --accent: #C5A880;
+  --accent-foreground: #2C2A29;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: #C5A88030;
+  --input: #3a3836;
+  --ring: #C5A880;
+  --radius: 0;
+}
+
+@theme inline {
+  --font-sans: 'Noto Serif JP', serif;
+  --font-serif: 'Noto Serif JP', serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-museum-deep: var(--museum-deep);
+  --color-museum-marble: var(--museum-marble);
+  --color-museum-gold: var(--museum-gold);
+  --color-museum-gold-subtle: var(--museum-gold-subtle);
+  --radius-sm: calc(var(--radius));
+  --radius-md: calc(var(--radius));
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom Animations */
+@keyframes line-expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-line-expand {
+  animation: line-expand 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: center;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animate-delay-900 {
+  animation-delay: 0.9s;
+}
+
+.animate-delay-1200 {
+  animation-delay: 1.2s;
+}
+
+/* Image hover effect */
+.collection-image {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collection-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 1px var(--museum-gold-subtle);
+}
+
+/* Text link underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--museum-gold);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image: 
+    linear-gradient(to right, var(--museum-gold) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--museum-gold) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.03;
+}
+
+/* Typography */
+.text-balance {
+  text-wrap: balance;
+}
+
+.tracking-wider-custom {
+  letter-spacing: 0.2em;
+}
+
+.leading-relaxed-custom {
+  line-height: 2.2;
+}
